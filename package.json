@@ -1,6 +1,6 @@
 {
   "name": "node-plankton",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A set of helpfull functions",
   "main": "index.js",
   "scripts": {

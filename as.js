@@ -17,8 +17,12 @@ var as = {
 		return function() { return subject; };
 	},
 	
-	promise: function(subject) {
-		return new Promise(function (resolve) { resolve(subject); });
+	async: function(callback) {
+		return function() {
+			return Promise.resolve(arguments).then(function (args) {
+				return callback.apply(null, args);
+			});
+		};
 	}
 };
 
