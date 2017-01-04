@@ -118,6 +118,10 @@ var is = {
 			is.undefined(subject) || 
 			is.empty(subject) || 
 			is.NaN(subject);
+	},
+	
+	true: function(subject) {
+		return !is.false(subject);
 	}
 };
 
