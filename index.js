@@ -1,9 +1,11 @@
 'use strict';
 
 
-var is = require('./is.js');
+var is = require('./src/is.js');
+var as = require('./src/as.js');
 
 
 module.exports = {
-	is: is
+	is: is,
+	as: as
 };
