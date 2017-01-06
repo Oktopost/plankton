@@ -117,11 +117,53 @@ number.even = function(subject) {
 };
 
 
+/**
+ * @param {*} subject
+ * @return bool
+ */
+var collection = function(subject) {
+	return is.object(subject) || is.array(subject) || is.string(subject);
+};
+
+/**
+ * @param {*} subject
+ * @return bool
+ */
+collection.empty = function(subject) {
+	if (is.array(subject)) {
+		return is.array.empty(subject);
+	} else if (is.object(subject)) {
+		return is.object.empty(subject);
+	} else if (is.string(subject)) {
+		return is.string.empty(subject)
+	}
+	
+	return false;
+};
+
+/**
+ * @param {*} subject
+ * @return bool
+ */
+collection.notEmpty = function(subject) {
+	if (is.array(subject)) {
+		return !is.array.empty(subject);
+	} else if (is.object(subject)) {
+		return !is.object.empty(subject);
+	} else if (is.string(subject)) {
+		return !is.string.empty(subject)
+	}
+	
+	return false;
+};
+
+
 var is = {
 	array: array,
 	object: object,
 	string: string,
 	number: number,
+	collection: collection,
 	
 	
 	/**
@@ -193,12 +235,8 @@ var is = {
 	 * @returns {boolean}
 	 */
 	empty: function(subject) {
-		if (is.array(subject)) {
-			return is.array.empty(subject);
-		} else if (is.object(subject)) {
-			return is.object.empty(subject);
-		} else if (is.string(subject)) {
-			is.string.empty(subject)
+		if (is.collection(subject)) {
+			return is.collection.empty(subject);
 		}
 		
 		throw 'Subject is not Array, Object or String';
@@ -230,7 +268,7 @@ var is = {
 			subject === 0 || 
 			subject === null || 
 			is.undefined(subject) || 
-			is.empty(subject) || 
+			is.collection.empty(subject) || 
 			is.NaN(subject);
 	},
 

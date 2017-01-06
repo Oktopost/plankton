@@ -65,6 +65,24 @@ suite('is module', function() {
 	 * @param {string[]} keys
 	 * @param {string[]} ignoreKeys
 	 */
+	function assertExceptionFor(callback, keys, ignoreKeys = []) {
+		let keysMap = keys.reduce((obj, key) => { obj[key] = true; return obj; } , {});
+		let ignoreMap = ignoreKeys.reduce((obj, key) => { obj[key] = true; return obj; } , {});
+		
+		TEST_KEYS.forEach((key) => {
+			if (is.defined(ignoreMap[key])) {
+				return;
+			}
+			
+			assert.throws(function() { callback(TEST_SUBJECTS[key]); });
+		})
+	}
+	
+	/**
+	 * @param {function(*): boolean} callback
+	 * @param {string[]} keys
+	 * @param {string[]} ignoreKeys
+	 */
 	function assertFalseFor(callback, keys, ignoreKeys = []) {
 		let keysMap = keys.reduce((obj, key) => { obj[key] = true; return obj; } , {});
 		let keysForTrueResult = TEST_KEYS.reduce(
@@ -240,5 +258,63 @@ suite('is module', function() {
 		assertTrueFor(is.null, [
 			'null',
 		]);
+	});
+	
+	suite('is.true', function() {
+		assertTrueFor(is.true, [
+			'array',
+			'object',
+			'string',
+			'number',
+			'negative',
+			'float',
+			'negative float',
+			'Infinity',
+			'negative Infinity',
+			'true',
+			'function',
+		]);
+	});
+	
+	suite('is.false', function() {
+		assertFalseFor(is.false, [
+			'array',
+			'object',
+			'string',
+			'number',
+			'negative',
+			'float',
+			'negative float',
+			'Infinity',
+			'negative Infinity',
+			'true',
+			'function',
+		]);
+	});
+	
+	suite('is.empty', function() {
+		
+		suite('on empty set', function() {
+			assert.isTrue(is.empty([]));
+			assert.isTrue(is.empty({}));
+			assert.isTrue(is.empty(''));
+		});
+		
+		suite('on not empty set', function () {
+			assert.isFalse(is.empty([1]));
+			assert.isFalse(is.empty({'a': 1}));
+			assert.isFalse(is.empty('b'));
+		});
+		
+		suite('not sets return false', function () {
+			assertExceptionFor(is.empty, TEST_KEYS, [
+				'empty array',
+				'array',
+				'empty object',
+				'object',
+				'empty string',
+				'string'
+			]);
+		});
 	});
 });
