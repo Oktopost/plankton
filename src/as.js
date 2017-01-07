@@ -19,10 +19,25 @@ var as = {
 	 * @returns {*}
 	 */
 	array: function(subject) {
+		if (is.undefined(subject)) {
+			return [];
+		}
+		
 		return (is.array(subject) ? subject : [subject]);
 	},
 
-
+	/**
+	 * @param subject
+	 * @return {*}
+	 */
+	func: function(subject) {
+		if (is.function(subject)) {
+			return subject;
+		}
+		
+		return function() { return subject };
+	},
+	
 	/**
 	 * @param {Function} callback
 	 * @returns {Function}
@@ -30,7 +45,7 @@ var as = {
 	async: function(callback) {
 		return function() {
 			return Promise.resolve(arguments).then(function (args) {
-				return callback.apply(null, args);
+				return as.func(callback).apply(null, args);
 			});
 		};
 	}

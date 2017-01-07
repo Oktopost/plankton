@@ -81,7 +81,7 @@ string.notEmpty = function(subject) {
  * @returns {boolean}
  */
 var number = function(subject) {
-	return toString.call(subject) === '[object Number]' && !is.infinite(subject) && !isNaN(subject);
+	return is.numeric(subject) && !is.infinite(subject) && !isNaN(subject);
 };
 
 /**
@@ -119,7 +119,7 @@ number.even = function(subject) {
 
 /**
  * @param {*} subject
- * @return bool
+ * @return {boolean}
  */
 var collection = function(subject) {
 	return is.object(subject) || is.array(subject) || is.string(subject);
@@ -127,7 +127,7 @@ var collection = function(subject) {
 
 /**
  * @param {*} subject
- * @return bool
+ * @return {boolean}
  */
 collection.empty = function(subject) {
 	if (is.array(subject)) {
@@ -143,7 +143,7 @@ collection.empty = function(subject) {
 
 /**
  * @param {*} subject
- * @return bool
+ * @return {boolean}
  */
 collection.notEmpty = function(subject) {
 	if (is.array(subject)) {
@@ -164,6 +164,22 @@ var is = {
 	string: string,
 	number: number,
 	collection: collection,
+	
+	/**
+	 * @param {*} subject
+	 * @returns {boolean}
+	 */
+	numeric: function (subject) {
+		return toString.call(subject) === '[object Number]';
+	},
+
+	/**
+	 * @param {*} subject
+	 * @returns {boolean}
+	 */
+	bool: function (subject) {
+		return toString.call(subject) === '[object Boolean]';
+	},
 	
 	
 	/**

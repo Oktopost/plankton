@@ -1,6 +1,6 @@
 {
-  "name": "node-plankton",
-  "version": "0.0.4",
+  "name": "oktopost-plankton",
+  "version": "0.1.0",
   "description": "A set of helpfull functions",
   "main": "index.js",
   "scripts": {

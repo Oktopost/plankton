@@ -3,163 +3,81 @@
 
 const is = require('../../src/is');
 const assert = require('chai').assert;
+const common = require('./common');
 
 
 suite('is module', function() {
-	
-	const TEST_SUBJECTS = {
-		'empty array':			[],
-		'array':				[1, 2],
-		'empty object':			{},
-		'object':				{'a': 'b'},
-		'empty string':			'',
-		'string':				'abc',
-		'zero':					0,
-		'number':				123,
-		'negative':				-123,
-		'float':				1.2,
-		'negative float':		-1.2,
-		'NaN':					NaN,
-		'Infinity':				Infinity,
-		'negative Infinity':    -Infinity,
-		'true':					true,
-		'false':				false,
-		'null':					null,
-		'function':				() => {}
-	};
-	
-	const TEST_KEYS = Object.keys(TEST_SUBJECTS);
-	
-
-	/**
-	 * @param {function(*): boolean} callback
-	 * @param {string[]} keys
-	 * @param {string[]} ignoreKeys
-	 */
-	function assertTrueFor(callback, keys, ignoreKeys = []) {
-		let keysMap = keys.reduce((obj, key) => { obj[key] = true; return obj; } , {});
-		let ignoreMap = ignoreKeys.reduce((obj, key) => { obj[key] = true; return obj; } , {});
-		
-		TEST_KEYS.forEach((key) => {
-			if (is.defined(ignoreMap[key])) {
-				return;
-			}
-			
-			let result = callback(TEST_SUBJECTS[key]);
-			
-			
-			if (is.defined(keysMap[key])) {
-				test('(' + key + ') must be true', function() { 
-					assert.isTrue(result); 
-				});
-			} else {
-				test(key + ' must be false', function() { 
-					assert.isFalse(result);
-				});
-			}
-		})
-	}
-	
-	/**
-	 * @param {function(*): boolean} callback
-	 * @param {string[]} keys
-	 * @param {string[]} ignoreKeys
-	 */
-	function assertExceptionFor(callback, keys, ignoreKeys = []) {
-		let keysMap = keys.reduce((obj, key) => { obj[key] = true; return obj; } , {});
-		let ignoreMap = ignoreKeys.reduce((obj, key) => { obj[key] = true; return obj; } , {});
-		
-		TEST_KEYS.forEach((key) => {
-			if (is.defined(ignoreMap[key])) {
-				return;
-			}
-			
-			assert.throws(function() { callback(TEST_SUBJECTS[key]); });
-		})
-	}
-	
-	/**
-	 * @param {function(*): boolean} callback
-	 * @param {string[]} keys
-	 * @param {string[]} ignoreKeys
-	 */
-	function assertFalseFor(callback, keys, ignoreKeys = []) {
-		let keysMap = keys.reduce((obj, key) => { obj[key] = true; return obj; } , {});
-		let keysForTrueResult = TEST_KEYS.reduce(
-			(arr, key) => { 
-				if (is.undefined(keysMap[key])) {
-					arr.push(key);
-				}
-				
-				return arr;
-			}, []);
-		
-		assertTrueFor(callback, keysForTrueResult, ignoreKeys);
-	}
+	test('is.bool', function() {
+		common.assertTrueFor(is.bool, [
+			'true',
+			'true object',
+			'false'
+		]);
+	});
 	
 	
-	suite('is.array', function() {
-		assertTrueFor(is.array, [
+	test('is.array', function() {
+		common.assertTrueFor(is.array, [
 			'empty array',
 			'array'
 		]);
 	});
 	
-	suite('is.array.empty', function() {
-		assertTrueFor(is.array.empty, [
+	test('is.array.empty', function() {
+		common.assertTrueFor(is.array.empty, [
 			'empty array'
 		]);
 	});
 	
-	suite('is.array.notEmpty', function() {
-		assertTrueFor(is.array.notEmpty, [
+	test('is.array.notEmpty', function() {
+		common.assertTrueFor(is.array.notEmpty, [
 			'array'
 		]);
 	});
 	
 	
-	suite('is.object', function() {
-		assertTrueFor(is.object, [
+	test('is.object', function() {
+		common.assertTrueFor(is.object, [
 			'empty object',
 			'object'
 		]);
 	});
 	
-	suite('is.object.empty', function() {
-		assertTrueFor(is.object.empty, [
+	test('is.object.empty', function() {
+		common.assertTrueFor(is.object.empty, [
 			'empty object'
 		]);
 	});
 	
-	suite('is.object.notEmpty', function() {
-		assertTrueFor(is.object.notEmpty, [
+	test('is.object.notEmpty', function() {
+		common.assertTrueFor(is.object.notEmpty, [
 			'object'
 		]);
 	});
 	
 	
-	suite('is.string', function() {
-		assertTrueFor(is.string, [
+	test('is.string', function() {
+		common.assertTrueFor(is.string, [
 			'empty string',
 			'string'
 		]);
 	});
 	
-	suite('is.string.empty', function() {
-		assertTrueFor(is.string.empty, [
+	test('is.string.empty', function() {
+		common.assertTrueFor(is.string.empty, [
 			'empty string'
 		]);
 	});
 	
-	suite('is.string.notEmpty', function() {
-		assertTrueFor(is.string.notEmpty, [
+	test('is.string.notEmpty', function() {
+		common.assertTrueFor(is.string.notEmpty, [
 			'string'
 		]);
 	});
 	
 	
-	suite('is.number', function() {
-		assertTrueFor(is.number, [
+	test('is.number', function() {
+		common.assertTrueFor(is.number, [
 			'zero',
 			'number',
 			'negative',
@@ -168,26 +86,28 @@ suite('is module', function() {
 		]);
 	});
 	
-	suite('is.number.int', function() {
-		assertTrueFor(is.number.int, [
+	test('is.number.int', function() {
+		common.assertTrueFor(is.number.int, [
 			'zero',
 			'number',
 			'negative'
 		]);
 	});
 	
-	suite('is.number.float', function() {
-		assertTrueFor(is.number.float, [
+	test('is.number.float', function() {
+		common.assertTrueFor(is.number.float, [
 			'float',
 			'negative float'
 		]);
 	});
 	
 	suite('is.number.odd', function() {
-		assertTrueFor(
-			is.number.odd, 
-			[],
-			['number', 'negative']);
+		test('not number type', function() {
+			common.assertTrueFor(
+				is.number.odd, 
+				[],
+				['number', 'negative']);
+		});
 		
 		test('odd number is true', function() { 
 			assert.isTrue(is.number.odd(7));
@@ -201,10 +121,12 @@ suite('is module', function() {
 	});
 	
 	suite('is.number.even', function() {
-		assertTrueFor(
-			is.number.even, 
-			['zero'],
-			['number', 'negative']);
+		test('not number type', function() {
+			common.assertTrueFor(
+				is.number.even, 
+				['zero'],
+				['number', 'negative']);
+		});
 		
 		test('even number is true', function() { 
 			assert.isTrue(is.number.even(20)); 
@@ -217,51 +139,60 @@ suite('is module', function() {
 		});
 	});
 	
-	suite('is.defined', function() {
-		assertFalseFor(is.defined, [
+	
+	test('is.numeric', function() {
+		common.assertTrueFor(is.numeric, [
+			'zero',
+			'number',
+			'negative',
+			'float',
+			'negative float',
+			'NaN',
+			'Infinity',
+			'negative Infinity'
+		]);
+	});
+	
+	
+	test('is.defined', function() {
+		common.assertFalseFor(is.defined, [
 			'undefined'
 		]);
 	});
 	
-	suite('is.undefined', function() {
-		assertTrueFor(is.undefined, [
+	test('is.undefined', function() {
+		common.assertTrueFor(is.undefined, [
 			'undefined'
 		]);
 	});
 	
-	suite('is.function', function() {
-		assertTrueFor(is.function, [
+	test('is.function', function() {
+		common.assertTrueFor(is.function, [
 			'function'
 		]);
 	});
 	
-	suite('is.NaN', function() {
-		assertTrueFor(is.NaN, [
+	test('is.NaN', function() {
+		common.assertTrueFor(is.NaN, [
 			['NaN']
 		]);
 	});
 	
-	suite('is.infinite', function() {
-		assertTrueFor(is.infinite, [
+	test('is.infinite', function() {
+		common.assertTrueFor(is.infinite, [
 			'Infinity', 
-			'negative Infinity',
+			'negative Infinity'
 		]);
 	});
 	
-	suite('is.null', function() {
-		assertTrueFor(is.null, [
-			'null',
+	test('is.null', function() {
+		common.assertTrueFor(is.null, [
+			'null'
 		]);
 	});
 	
-	suite('is.null', function() {
-		assertTrueFor(is.null, [
-			'null',
-		]);
-	});
-	
-	suite('is.true', function() {
-		assertTrueFor(is.true, [
+	test('is.true', function() {
+		common.assertTrueFor(is.true, [
 			'array',
 			'object',
 			'string',
@@ -272,12 +203,13 @@ suite('is module', function() {
 			'Infinity',
 			'negative Infinity',
 			'true',
-			'function',
+			'true object',
+			'function'
 		]);
 	});
 	
-	suite('is.false', function() {
-		assertFalseFor(is.false, [
+	test('is.false', function() {
+		common.assertFalseFor(is.false, [
 			'array',
 			'object',
 			'string',
@@ -288,26 +220,27 @@ suite('is module', function() {
 			'Infinity',
 			'negative Infinity',
 			'true',
-			'function',
+			'true object',
+			'function'
 		]);
 	});
 	
 	suite('is.empty', function() {
 		
-		suite('on empty set', function() {
+		test('on empty set', function() {
 			assert.isTrue(is.empty([]));
 			assert.isTrue(is.empty({}));
 			assert.isTrue(is.empty(''));
 		});
 		
-		suite('on not empty set', function () {
+		test('on not empty set', function () {
 			assert.isFalse(is.empty([1]));
 			assert.isFalse(is.empty({'a': 1}));
 			assert.isFalse(is.empty('b'));
 		});
 		
-		suite('not sets return false', function () {
-			assertExceptionFor(is.empty, TEST_KEYS, [
+		test('not sets return false', function () {
+			common.assertExceptionFor(is.empty, common.TEST_KEYS, [
 				'empty array',
 				'array',
 				'empty object',
@@ -317,4 +250,73 @@ suite('is module', function() {
 			]);
 		});
 	});
+	
+	suite('is.json', function() {
+		test('json string', function() {
+			assert.isTrue(is.json('"a"'));
+			assert.isTrue(is.json('true'));
+			assert.isTrue(is.json('1'));
+			assert.isTrue(is.json('[]'));
+			assert.isTrue(is.json('{}'));
+			assert.isTrue(is.json('{"a":"b"}'));
+		});
+		
+		test('invalid string', function() {
+			assert.isFalse(is.json('{"a":}'));
+		});
+		
+		test('invalid subject', function() {
+			common.assertFalseFor(is.json, common.TEST_KEYS, [
+				'empty string',
+				'string'
+			]);
+		});
+	});
+	
+	
+	test('is.jsPrimitive', function() {
+		common.assertTrueFor(is.jsPrimitive, [
+			'empty string',
+			'string',
+			'zero',
+			'number',
+			'negative',
+			'float',
+			'negative float',
+			'NaN',
+			'Infinity',
+			'negative Infinity',
+			'true',
+			'false',
+			'null'
+		]);
+		
+		assert.isFalse(is.jsPrimitive(new String()));
+		assert.isFalse(is.jsPrimitive(new Number()));
+		assert.isFalse(is.jsPrimitive(new Boolean()));
+	});
+	
+	
+	test('is.jsObject', function() {
+		common.assertFalseFor(is.jsObject, [
+			'empty string',
+			'string',
+			'zero',
+			'number',
+			'negative',
+			'float',
+			'negative float',
+			'NaN',
+			'Infinity',
+			'negative Infinity',
+			'true',
+			'false',
+			'null'
+		]);
+		
+		assert.isTrue(is.jsObject(new String()));
+		assert.isTrue(is.jsObject(new Number()));
+		assert.isTrue(is.jsObject(new Boolean()));
+	});
+	
 });
