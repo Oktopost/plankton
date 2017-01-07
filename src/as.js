@@ -1,7 +1,7 @@
 'use strict';
 
 
-var is = require('./is.js');
+var is = require('./is');
 
 
 var as = {

@@ -1,0 +1,9 @@
+(function() {
+	var module = {};
+	
+	(function(module, plankton) {
+		<%= contents %>
+	})(module);
+	
+	window.plankton.mixin(module.exports, window.plankton);
+})();

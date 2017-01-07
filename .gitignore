@@ -10,5 +10,10 @@
 # Node
 /node_modules/*
 
-# Local test files
+# Local files
+npm-debug.log
 test.js
+
+
+# Build directories
+/bin
