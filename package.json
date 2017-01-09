@@ -7,7 +7,16 @@
     "test": "mocha"
   },
   "keywords": [],
-  "author": "Alexey Puchkov",
+  "author": {
+    "name" : "Alexey Puchkov",
+    "email" : "alexey@oktopost.com",
+    "url" : "http://www.oktopost.com/"
+  },
+  "contributors": [],
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/Oktopost/plankton.git"
+  },
   "license": "MIT",
   "devDependencies": {
     "chai": "^3.5.0",
@@ -22,5 +31,5 @@
     "gulp-wrap": "^0.13.0",
     "merge-stream": "^1.0.1",
     "mocha": "^3.2.0"
-  }
 }
+  }
