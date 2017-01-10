@@ -80,40 +80,40 @@ string.notEmpty = function(subject) {
  * @param {*} subject
  * @returns {boolean}
  */
-var number = function(subject) {
-	return is.numeric(subject) && !is.infinite(subject) && !isNaN(subject);
+var numeric = function(subject) {
+	return is.number(subject) && !is.infinite(subject) && !isNaN(subject);
 };
 
 /**
  * @param {*} subject
  * @returns {boolean}
  */
-number.int = function(subject) {
-	return is.number(subject) && (subject % 1 === 0);
+numeric.int = function(subject) {
+	return is.numeric(subject) && (subject % 1 === 0);
 };
 
 /**
  * @param {*} subject
  * @returns {boolean}
  */
-number.float = function(subject) {
-	return is.number(subject) && (subject % 1 !== 0);
+numeric.float = function(subject) {
+	return is.numeric(subject) && (subject % 1 !== 0);
 };
 
 /**
  * @param {*} subject
  * @return {boolean}
  */
-number.odd = function(subject) {
-	return is.number.int(subject) && (subject % 2 !== 0);
+numeric.odd = function(subject) {
+	return is.numeric.int(subject) && (subject % 2 !== 0);
 };
 
 /**
  * @param {*} subject
  * @return {boolean}
  */
-number.even = function(subject) {
-	return is.number.int(subject) && (subject % 2 === 0);
+numeric.even = function(subject) {
+	return is.numeric.int(subject) && (subject % 2 === 0);
 };
 
 
@@ -162,14 +162,14 @@ var is = {
 	array: array,
 	object: object,
 	string: string,
-	number: number,
+	numeric: numeric,
 	collection: collection,
 	
 	/**
 	 * @param {*} subject
 	 * @returns {boolean}
 	 */
-	numeric: function (subject) {
+	number: function (subject) {
 		return toString.call(subject) === '[object Number]';
 	},
 

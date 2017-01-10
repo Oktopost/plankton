@@ -76,8 +76,8 @@ suite('is module', function() {
 	});
 	
 	
-	test('is.number', function() {
-		common.assertTrueFor(is.number, [
+	test('is.numeric', function() {
+		common.assertTrueFor(is.numeric, [
 			'zero',
 			'number',
 			'negative',
@@ -86,62 +86,62 @@ suite('is module', function() {
 		]);
 	});
 	
-	test('is.number.int', function() {
-		common.assertTrueFor(is.number.int, [
+	test('is.numeric.int', function() {
+		common.assertTrueFor(is.numeric.int, [
 			'zero',
 			'number',
 			'negative'
 		]);
 	});
 	
-	test('is.number.float', function() {
-		common.assertTrueFor(is.number.float, [
+	test('is.numeric.float', function() {
+		common.assertTrueFor(is.numeric.float, [
 			'float',
 			'negative float'
 		]);
 	});
 	
-	suite('is.number.odd', function() {
-		test('not number type', function() {
+	suite('is.numeric.odd', function() {
+		test('not numeric type', function() {
 			common.assertTrueFor(
-				is.number.odd, 
+				is.numeric.odd, 
 				[],
 				['number', 'negative']);
 		});
 		
-		test('odd number is true', function() { 
-			assert.isTrue(is.number.odd(7));
-			assert.isTrue(is.number.odd(-7));
+		test('odd numeric is true', function() { 
+			assert.isTrue(is.numeric.odd(7));
+			assert.isTrue(is.numeric.odd(-7));
 		});
 		
-		test('even number is false', function() { 
-			assert.isFalse(is.number.odd(20));
-			assert.isFalse(is.number.odd(-20));
+		test('even numeric is false', function() { 
+			assert.isFalse(is.numeric.odd(20));
+			assert.isFalse(is.numeric.odd(-20));
 		});
 	});
 	
-	suite('is.number.even', function() {
-		test('not number type', function() {
+	suite('is.numeric.even', function() {
+		test('not numeric type', function() {
 			common.assertTrueFor(
-				is.number.even, 
+				is.numeric.even, 
 				['zero'],
 				['number', 'negative']);
 		});
 		
-		test('even number is true', function() { 
-			assert.isTrue(is.number.even(20)); 
-			assert.isTrue(is.number.even(-20));
+		test('even numeric is true', function() { 
+			assert.isTrue(is.numeric.even(20)); 
+			assert.isTrue(is.numeric.even(-20));
 		});
 		
-		test('odd number is false', function() { 
-			assert.isFalse(is.number.even(7)); 
-			assert.isFalse(is.number.even(-7));
+		test('odd numeric is false', function() { 
+			assert.isFalse(is.numeric.even(7)); 
+			assert.isFalse(is.numeric.even(-7));
 		});
 	});
 	
 	
-	test('is.numeric', function() {
-		common.assertTrueFor(is.numeric, [
+	test('is.number', function() {
+		common.assertTrueFor(is.number, [
 			'zero',
 			'number',
 			'negative',
