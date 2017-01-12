@@ -37,7 +37,7 @@ any.item = function(subject) {
 	var obj = undefined;
 	
 	if (is.defined(key)) {
-		var obj = {};
+		obj = {};
 		obj[key] = subject[key];
 	}
 	
@@ -45,10 +45,50 @@ any.item = function(subject) {
 };
 
 
+/**
+ * @param {Object} subject
+ * @param {function(*)} callback
+ */
+var forEach = function(subject, callback) {
+	forEach.key(subject, function(key) {
+		callback(subject[key]);
+	});
+};
+
+/**
+ * @param {Object} subject
+ * @param {function(*)} callback
+ */
+forEach.value = forEach;
+
+/**
+ * @param {Object} subject
+ * @param {function(*)} callback
+ */
+forEach.key = function(subject, callback) {
+	obj.keys(subject).forEach(function(key) {
+		callback(key);
+	});
+};
+
+/**
+ * @param {Object} subject
+ * @param {function(*)} callback
+ */
+forEach.item = function(subject, callback) {
+	forEach.key(subject, function(key) {
+		var item = {};
+		item[key] = subject[key];
+		callback(item);
+	});
+};
+
+
 var obj = {
 	any: any,
+	forEach: forEach,
 	
-
+	
 	/**
 	 * @param {Object} subject
 	 * @returns {Array}
@@ -66,9 +106,7 @@ var obj = {
 	 */
 	keys: function(subject) {
 		return Object.keys(subject);
-	},
-	
-	
+	}
 };
 
 
