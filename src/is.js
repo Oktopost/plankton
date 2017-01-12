@@ -1,6 +1,10 @@
 'use strict';
 
 
+var ARRAY_INDEX_REGEX = /^0$|^[1-9]\d*$/;
+var ARRAY_INDEX_MAX_VALUE = 4294967294;
+
+
 var is = function(subject) {
 	return is.true(subject);
 };
@@ -292,6 +296,14 @@ is.false = function(subject) {
  */
 is.true = function(subject) {
 	return !is.false(subject);
+};
+
+/**
+ * @param {*} subject
+ * @retrns {boolean}
+ */
+is.index = function(subject) {
+	return ARRAY_INDEX_REGEX.test(key) && key <= ARRAY_INDEX_MAX_VALUE;
 };
 
 
