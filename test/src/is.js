@@ -7,6 +7,24 @@ const common = require('./common');
 
 
 suite('is module', function() {
+	test('is', function() {
+		common.assertTrueFor(is.true, [
+			'array',
+			'object',
+			'string',
+			'number',
+			'negative',
+			'float',
+			'negative float',
+			'Infinity',
+			'negative Infinity',
+			'true',
+			'true object',
+			'function'
+		]);
+	});
+	
+	
 	test('is.bool', function() {
 		common.assertTrueFor(is.bool, [
 			'true',

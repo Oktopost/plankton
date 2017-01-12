@@ -1,11 +1,16 @@
 'use strict';
 
 
+var is = function(subject) {
+	return is.true(subject);
+};
+
+
 /**
  * @param {*} subject
  * @returns {boolean}
  */
-var array = function(subject) {
+is.array = function(subject) {
 	return toString.call(subject) === '[object Array]';
 };
 
@@ -13,7 +18,7 @@ var array = function(subject) {
  * @param {*} subject
  * @returns {boolean}
  */
-array.empty = function(subject) {
+is.array.empty = function(subject) {
 	return is.array(subject) && subject.length === 0;
 };
 
@@ -21,7 +26,7 @@ array.empty = function(subject) {
  * @param {*} subject
  * @returns {boolean}
  */
-array.notEmpty = function(subject) {
+is.array.notEmpty = function(subject) {
 	return is.array(subject) && subject.length > 0;
 };
 
@@ -30,7 +35,7 @@ array.notEmpty = function(subject) {
  * @param {*} subject
  * @returns {boolean}
  */
-var object = function(subject) {
+is.object = function(subject) {
 	return toString.call(subject) === '[object Object]';
 };
 
@@ -38,7 +43,7 @@ var object = function(subject) {
  * @param {*} subject
  * @returns {boolean}
  */
-object.empty = function(subject) {
+is.object.empty = function(subject) {
 	return is.object(subject) && Object.keys(subject).length === 0;
 };
 
@@ -46,7 +51,7 @@ object.empty = function(subject) {
  * @param {*} subject
  * @returns {boolean}
  */
-object.notEmpty = function(subject) {
+is.object.notEmpty = function(subject) {
 	return is.object(subject) && Object.keys(subject).length > 0;
 };
 
@@ -55,7 +60,7 @@ object.notEmpty = function(subject) {
  * @param {*} subject
  * @returns {boolean}
  */
-var string = function(subject) {
+is.string = function(subject) {
 	return toString.call(subject) === '[object String]';
 };
 
@@ -63,7 +68,7 @@ var string = function(subject) {
  * @param {*} subject
  * @returns {boolean}
  */
-string.empty = function(subject) {
+is.string.empty = function(subject) {
 	return is.string(subject) && subject.length === 0;
 };
 
@@ -71,7 +76,7 @@ string.empty = function(subject) {
  * @param {*} subject
  * @returns {boolean}
  */
-string.notEmpty = function(subject) {
+is.string.notEmpty = function(subject) {
 	return is.string(subject) && subject.length > 0;
 };
 
@@ -80,7 +85,7 @@ string.notEmpty = function(subject) {
  * @param {*} subject
  * @returns {boolean}
  */
-var numeric = function(subject) {
+is.numeric = function(subject) {
 	return is.number(subject) && !is.infinite(subject) && !isNaN(subject);
 };
 
@@ -88,7 +93,7 @@ var numeric = function(subject) {
  * @param {*} subject
  * @returns {boolean}
  */
-numeric.int = function(subject) {
+is.numeric.int = function(subject) {
 	return is.numeric(subject) && (subject % 1 === 0);
 };
 
@@ -96,7 +101,7 @@ numeric.int = function(subject) {
  * @param {*} subject
  * @returns {boolean}
  */
-numeric.float = function(subject) {
+is.numeric.float = function(subject) {
 	return is.numeric(subject) && (subject % 1 !== 0);
 };
 
@@ -104,7 +109,7 @@ numeric.float = function(subject) {
  * @param {*} subject
  * @return {boolean}
  */
-numeric.odd = function(subject) {
+is.numeric.odd = function(subject) {
 	return is.numeric.int(subject) && (subject % 2 !== 0);
 };
 
@@ -112,7 +117,7 @@ numeric.odd = function(subject) {
  * @param {*} subject
  * @return {boolean}
  */
-numeric.even = function(subject) {
+is.numeric.even = function(subject) {
 	return is.numeric.int(subject) && (subject % 2 === 0);
 };
 
@@ -121,7 +126,7 @@ numeric.even = function(subject) {
  * @param {*} subject
  * @return {boolean}
  */
-var collection = function(subject) {
+is.collection = function(subject) {
 	return is.object(subject) || is.array(subject) || is.string(subject);
 };
 
@@ -129,7 +134,7 @@ var collection = function(subject) {
  * @param {*} subject
  * @return {boolean}
  */
-collection.empty = function(subject) {
+is.collection.empty = function(subject) {
 	if (is.array(subject)) {
 		return is.array.empty(subject);
 	} else if (is.object(subject)) {
@@ -145,7 +150,7 @@ collection.empty = function(subject) {
  * @param {*} subject
  * @return {boolean}
  */
-collection.notEmpty = function(subject) {
+is.collection.notEmpty = function(subject) {
 	if (is.array(subject)) {
 		return !is.array.empty(subject);
 	} else if (is.object(subject)) {
@@ -158,143 +163,135 @@ collection.notEmpty = function(subject) {
 };
 
 
-var is = {
-	array: array,
-	object: object,
-	string: string,
-	numeric: numeric,
-	collection: collection,
-	
-	/**
-	 * @param {*} subject
-	 * @returns {boolean}
-	 */
-	number: function (subject) {
-		return toString.call(subject) === '[object Number]';
-	},
+/**
+ * @param {*} subject
+ * @returns {boolean}
+ */
+is.number = function(subject) {
+	return toString.call(subject) === '[object Number]';
+};
 
-	/**
-	 * @param {*} subject
-	 * @returns {boolean}
-	 */
-	bool: function (subject) {
-		return toString.call(subject) === '[object Boolean]';
-	},
-	
-	
-	/**
-	 * @param {*} subject
-	 * @returns {boolean}
-	 */
-	defined: function(subject) {
-		return typeof subject !== 'undefined';
-	},
-	
-	/**
-	 * @param {*} subject
-	 * @returns {boolean}
-	 */
-	undefined: function(subject) {
-		return typeof subject === 'undefined';
-	},
-	
-	/**
-	 * @param {*} subject
-	 * @returns {boolean}
-	 */
-	function: function(subject) {
-		return toString.call(subject) === '[object Function]';
-	},
-	
-	/**
-	 * @param {*} subject
-	 * @returns {boolean}
-	 */
-	NaN: function(subject) {
-		return isNaN(subject) && toString.call(subject) === '[object Number]';
-	},
-	
-	/**
-	 * @param {*} subject
-	 * @returns {boolean}
-	 */
-	infinite: function(subject) {
-		return Number.POSITIVE_INFINITY === subject || Number.NEGATIVE_INFINITY === subject;
-	},
-	
-	/**
-	 * @param {*} subject
-	 * @returns {boolean}
-	 */
-	null: function(subject) {
-		return subject === null;
-	},
-	
-	/**
-	 * @param {*} subject
-	 * @returns {boolean}
-	 */
-	jsObject: function(subject) {
-		return subject instanceof Object;
-	},
-	
-	/**
-	 * @param {*} subject
-	 * @returns {boolean}
-	 */
-	jsPrimitive: function(subject) {
-		return !is.jsObject(subject);
-	},
-	
-	/**
-	 * @param {*} subject
-	 * @returns {boolean}
-	 */
-	empty: function(subject) {
-		if (is.collection(subject)) {
-			return is.collection.empty(subject);
-		}
-		
-		throw 'Subject is not Array, Object or String';
-	},
-	
-	/**
-	 * @param {*} subject
-	 * @returns {boolean}
-	 */
-	json: function(subject) {
-		if (!is.string(subject)) {
-			return false;
-		}
-		
-		try {
-			JSON.parse(subject);
-			return true;
-		} catch (e) {
-			return false;
-		}
-	},
-	
-	/**
-	 * @param {*} subject
-	 * @returns {boolean}
-	 */
-	false: function(subject) {
-		return subject === false || 
-			subject === 0 || 
-			subject === null || 
-			is.undefined(subject) || 
-			is.collection.empty(subject) || 
-			is.NaN(subject);
-	},
+/**
+ * @param {*} subject
+ * @returns {boolean}
+ */
+is.bool = function(subject) {
+	return toString.call(subject) === '[object Boolean]';
+};
 
-	/**
-	 * @param {*} subject
-	 * @returns {boolean}
-	 */
-	true: function(subject) {
-		return !is.false(subject);
+
+/**
+ * @param {*} subject
+ * @returns {boolean}
+ */
+is.defined = function(subject) {
+	return typeof subject !== 'undefined';
+};
+
+/**
+ * @param {*} subject
+ * @returns {boolean}
+ */
+is.undefined = function(subject) {
+	return typeof subject === 'undefined';
+};
+
+/**
+ * @param {*} subject
+ * @returns {boolean}
+ */
+is.function = function(subject) {
+	return toString.call(subject) === '[object Function]';
+};
+
+/**
+ * @param {*} subject
+ * @returns {boolean}
+ */
+is.NaN = function(subject) {
+	return isNaN(subject) && toString.call(subject) === '[object Number]';
+};
+
+/**
+ * @param {*} subject
+ * @returns {boolean}
+ */
+is.infinite = function(subject) {
+	return Number.POSITIVE_INFINITY === subject || Number.NEGATIVE_INFINITY === subject;
+};
+
+/**
+ * @param {*} subject
+ * @returns {boolean}
+ */
+is.null = function(subject) {
+	return subject === null;
+};
+
+/**
+ * @param {*} subject
+ * @returns {boolean}
+ */
+is.jsObject = function(subject) {
+	return subject instanceof Object;
+};
+
+/**
+ * @param {*} subject
+ * @returns {boolean}
+ */
+is.jsPrimitive = function(subject) {
+	return !is.jsObject(subject);
+};
+
+/**
+ * @param {*} subject
+ * @returns {boolean}
+ */
+is.empty = function(subject) {
+	if (is.collection(subject)) {
+		return is.collection.empty(subject);
 	}
+	
+	throw 'Subject is not Array, Object or String';
+};
+
+/**
+ * @param {*} subject
+ * @returns {boolean}
+ */
+is.json = function(subject) {
+	if (!is.string(subject)) {
+		return false;
+	}
+	
+	try {
+		JSON.parse(subject);
+		return true;
+	} catch (e) {
+		return false;
+	}
+};
+
+/**
+ * @param {*} subject
+ * @returns {boolean}
+ */
+is.false = function(subject) {
+	return subject === false || 
+		subject === 0 || 
+		subject === null || 
+		is.undefined(subject) || 
+		is.collection.empty(subject) || 
+		is.NaN(subject);
+};
+
+/**
+ * @param {*} subject
+ * @returns {boolean}
+ */
+is.true = function(subject) {
+	return !is.false(subject);
 };
 
 
