@@ -51,7 +51,7 @@ any.item = function(subject) {
  */
 var forEach = function(subject, callback) {
 	forEach.key(subject, function(key) {
-		callback(subject[key]);
+		return callback(subject[key]);
 	});
 };
 
@@ -66,9 +66,15 @@ forEach.value = forEach;
  * @param {function(*)} callback
  */
 forEach.key = function(subject, callback) {
-	obj.keys(subject).forEach(function(key) {
-		callback(key);
-	});
+	for (var key in subject) {
+		if (!subject.hasOwnProperty(key)) {
+			continue;
+		}
+		
+		if (callback(key) === false) {
+			break;
+		}
+	}
 };
 
 /**
@@ -77,9 +83,7 @@ forEach.key = function(subject, callback) {
  */
 forEach.item = function(subject, callback) {
 	forEach.key(subject, function(key) {
-		var item = {};
-		item[key] = subject[key];
-		callback(item);
+		return callback(key, subject[key]);
 	});
 };
 

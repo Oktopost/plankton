@@ -33,7 +33,7 @@ array.forEach.value = forEach;
  * @param {function(*)} callback
  */
 array.forEach.key = function(subject, callback) {
-	for (key in subject) {
+	for (var key in subject) {
 		if (!is.index(key) || !subject.hasOwnProperty(key)) {
 			continue;
 		}
@@ -50,9 +50,7 @@ array.forEach.key = function(subject, callback) {
  */
 array.forEach.item = function(subject, callback) {
 	array.forEach.key(subject, function(key) {
-		var obj = {};
-		obj[key] = subject[key];
-		return callback(obj);
+		return callback(key, subject[key]);
 	});
 };
 
