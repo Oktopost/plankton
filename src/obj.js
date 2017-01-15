@@ -4,12 +4,15 @@
 const is = require('./is');
 
 
+var obj = {};
+
+
 /**
  * @param subject
  * @returns {*|undefined}
  */
-var any = function(subject) {
-	var key = any.key(subject);
+obj.any = function(subject) {
+	var key = obj.any.key(subject);
 	return (is.defined(key) ? subject[key] : undefined);
 };
 
@@ -17,13 +20,13 @@ var any = function(subject) {
  * @param {Object} subject
  * @return {*|undefined}
  */
-any.value = any;
+obj.any.value = obj.any;
 
 /**
  * @param {Object} subject
  * @return {*|undefined}
  */
-any.key = function(subject) {
+obj.any.key = function(subject) {
 	var keys = obj.keys(subject);
 	return keys.length > 0 ? keys[0] : undefined;
 };
@@ -32,16 +35,16 @@ any.key = function(subject) {
  * @param {Object} subject
  * @return {*|undefined}
  */
-any.item = function(subject) {
-	var key = any.key(subject);
-	var obj = undefined;
+obj.any.item = function(subject) {
+	var key = obj.any.key(subject);
+	var res = undefined;
 	
 	if (is.defined(key)) {
-		obj = {};
-		obj[key] = subject[key];
+		res = {};
+		res[key] = subject[key];
 	}
 	
-	return obj;
+	return res;
 };
 
 
@@ -49,8 +52,8 @@ any.item = function(subject) {
  * @param {Object} subject
  * @param {function(*)} callback
  */
-var forEach = function(subject, callback) {
-	forEach.key(subject, function(key) {
+obj.forEach = function(subject, callback) {
+	obj.forEach.key(subject, function(key) {
 		return callback(subject[key]);
 	});
 };
@@ -59,13 +62,13 @@ var forEach = function(subject, callback) {
  * @param {Object} subject
  * @param {function(*)} callback
  */
-forEach.value = forEach;
+obj.forEach.value = obj.forEach;
 
 /**
  * @param {Object} subject
  * @param {function(*)} callback
  */
-forEach.key = function(subject, callback) {
+obj.forEach.key = function(subject, callback) {
 	for (var key in subject) {
 		if (!subject.hasOwnProperty(key)) {
 			continue;
@@ -81,36 +84,43 @@ forEach.key = function(subject, callback) {
  * @param {Object} subject
  * @param {function(*)} callback
  */
-forEach.item = function(subject, callback) {
-	forEach.key(subject, function(key) {
+obj.forEach.pair = function(subject, callback) {
+	obj.forEach.key(subject, function(key) {
 		return callback(key, subject[key]);
 	});
 };
 
+/**
+ * @param {Object} subject
+ * @param {function(*)} callback
+ */
+obj.forEach.item = function(subject, callback) {
+	obj.forEach.pair(subject, function(key, value) {
+		var res = {};
+		res[key] = value;
+		return callback(res);
+	});
+};
 
-var obj = {
-	any: any,
-	forEach: forEach,
 	
+/**
+ * @param {Object} subject
+ * @returns {Array}
+ */
+obj.values = function(subject) {
+	return obj.keys(subject).reduce(function (result, key) {
+		result.push(subject[key]);
+		return result;
+	}, [])
+};
+
 	
-	/**
-	 * @param {Object} subject
-	 * @returns {Array}
-	 */
-	values: function(subject) {
-		return obj.keys(subject).reduce(function (result, key) {
-			result.push(subject[key]);
-			return result;
-		}, [])
-	},
-	
-	/**
-	 * @param {Object} subject
-	 * @returns {Array}
-	 */
-	keys: function(subject) {
-		return Object.keys(subject);
-	}
+/**
+ * @param {Object} subject
+ * @returns {Array}
+ */
+obj.keys = function(subject) {
+	return Object.keys(subject);
 };
 
 

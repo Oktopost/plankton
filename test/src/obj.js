@@ -100,4 +100,127 @@ suite('obj module', function() {
 			});
 		});
 	});
+	
+	suite('obj.forEach', () => {
+		test('forEach equals to forEach.values', () => {
+			assert.equal(obj.forEach, obj.forEach.value);
+		});
+		
+		
+		suite('obj.forEach.value', () => {
+			test('empty object', () => {
+				let result = [];
+				obj.forEach.value({}, (...args) => { result.push(args) });
+				assert.deepEqual([], result);
+			});
+			
+			test('object with values', () => {
+				let result = [];
+				obj.forEach.value({'a': 'b', 'c': {'a': 12}}, (...args) => { result.push(args) });
+				assert.deepEqual([['b'], [{'a': 12}]], result);
+			});
+			
+			test('break aborts loop', () => {
+				let result = [];
+				obj.forEach.value({'a': 'b', 'c': 'd'}, (...args) => { result.push(args); return false });
+				assert.deepEqual([['b']], result);
+			});
+			
+			test('object with inherited', () => {
+				let result = [];
+				let testClass = function() {};
+				testClass.prototype.a = 12;
+				
+				obj.forEach.value(new testClass, (...args) => { result.push(args) });
+				assert.deepEqual([], result);
+			});
+		});
+		
+		suite('obj.forEach.key', () => {
+			test('empty object', () => {
+				let result = [];
+				obj.forEach.key({}, (...args) => { result.push(args) });
+				assert.deepEqual([], result);
+			});
+			
+			test('object with key', () => {
+				let result = [];
+				obj.forEach.key({'a': 'b', 'c': {'a': 12}}, (...args) => { result.push(args) });
+				assert.deepEqual([['a'], ['c']], result);
+			});
+			
+			test('break aborts loop', () => {
+				let result = [];
+				obj.forEach.key({'a': 'b', 'c': 'd'}, (...args) => { result.push(args); return false });
+				assert.deepEqual([['a']], result);
+			});
+			
+			test('object with inherited', () => {
+				let result = [];
+				let testClass = function() {};
+				testClass.prototype.a = 12;
+				
+				obj.forEach.key(new testClass, (...args) => { result.push(args) });
+				assert.deepEqual([], result);
+			});
+		});
+		
+		suite('obj.forEach.pair', () => {
+			test('empty object', () => {
+				let result = [];
+				obj.forEach.pair({}, (...args) => { result.push(args) });
+				assert.deepEqual([], result);
+			});
+			
+			test('object with key', () => {
+				let result = [];
+				obj.forEach.pair({'a': 'b', 'c': {'a': 12}}, (...args) => { result.push(args) });
+				assert.deepEqual([['a', 'b'], ['c', {'a': 12}]], result);
+			});
+			
+			test('break aborts loop', () => {
+				let result = [];
+				obj.forEach.pair({'a': 'b', 'c': 'd'}, (...args) => { result.push(args); return false });
+				assert.deepEqual([['a', 'b']], result);
+			});
+			
+			test('object with inherited', () => {
+				let result = [];
+				let testClass = function() {};
+				testClass.prototype.a = 12;
+				
+				obj.forEach.pair(new testClass, (...args) => { result.push(args) });
+				assert.deepEqual([], result);
+			});
+		});
+		
+		suite('obj.forEach.item', () => {
+			test('empty object', () => {
+				let result = [];
+				obj.forEach.item({}, (...args) => { result.push(args) });
+				assert.deepEqual([], result);
+			});
+			
+			test('object with key', () => {
+				let result = [];
+				obj.forEach.item({'a': 'b', 'c': {'a': 12}}, (...args) => { result.push(args) });
+				assert.deepEqual([[{'a': 'b'}], [{'c': {'a': 12}}]], result);
+			});
+			
+			test('break aborts loop', () => {
+				let result = [];
+				obj.forEach.item({'a': 'b', 'c': 'd'}, (...args) => { result.push(args); return false });
+				assert.deepEqual([[{'a': 'b'}]], result);
+			});
+			
+			test('object with inherited', () => {
+				let result = [];
+				let testClass = function() {};
+				testClass.prototype.a = 12;
+				
+				obj.forEach.item(new testClass, (...args) => { result.push(args) });
+				assert.deepEqual([], result);
+			});
+		});
+	});
 });

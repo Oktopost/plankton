@@ -26,11 +26,11 @@ array.forEach = function(subject, callback) {
  * @param {Object} subject
  * @param {function(*)} callback
  */
-array.forEach.value = forEach;
+array.forEach.value = array.forEach;
 
 /**
  * @param {Object} subject
- * @param {function(*)} callback
+ * @param {function(number)} callback
  */
 array.forEach.key = function(subject, callback) {
 	for (var key in subject) {
@@ -38,7 +38,7 @@ array.forEach.key = function(subject, callback) {
 			continue;
 		}
 		
-		if (callback(key) === false) {
+		if (callback(parseInt(key)) === false) {
 			break;
 		}
 	}
@@ -46,11 +46,23 @@ array.forEach.key = function(subject, callback) {
 
 /**
  * @param {Object} subject
- * @param {function(item Object)} callback
+ * @param {function(number *)} callback
  */
-array.forEach.item = function(subject, callback) {
+array.forEach.pair = function(subject, callback) {
 	array.forEach.key(subject, function(key) {
 		return callback(key, subject[key]);
+	});
+};
+
+/**
+ * @param {Object} subject
+ * @param {function(Object)} callback
+ */
+array.forEach.item = function(subject, callback) {
+	array.forEach.pair(subject, function(key, value) {
+		var obj = {};
+		obj[key] = value;
+		return callback(obj);
 	});
 };
 

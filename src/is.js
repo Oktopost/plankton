@@ -303,7 +303,7 @@ is.true = function(subject) {
  * @retrns {boolean}
  */
 is.index = function(subject) {
-	return ARRAY_INDEX_REGEX.test(key) && key <= ARRAY_INDEX_MAX_VALUE;
+	return ARRAY_INDEX_REGEX.test(subject) && subject <= ARRAY_INDEX_MAX_VALUE;
 };
 
 
