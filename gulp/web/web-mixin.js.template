@@ -3,7 +3,7 @@
 	
 	(function(module, plankton) {
 		<%= contents %>
-	})(module);
+	})(module, window.plankton);
 	
-	window.plankton.mixin(module.exports, window.plankton);
+	window.plankton.mixin(module.exports);
 })();
