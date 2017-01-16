@@ -8,14 +8,14 @@
   },
   "keywords": [],
   "author": {
-    "name" : "Alexey Puchkov",
-    "email" : "alexey@oktopost.com",
-    "url" : "http://www.oktopost.com/"
+    "name": "Alexey Puchkov",
+    "email": "alexey@oktopost.com",
+    "url": "http://www.oktopost.com/"
   },
   "contributors": [],
-  "repository" : {
-    "type" : "git",
-    "url" : "https://github.com/Oktopost/plankton.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Oktopost/plankton.git"
   },
   "license": "MIT",
   "devDependencies": {
@@ -31,5 +31,6 @@
     "gulp-wrap": "^0.13.0",
     "merge-stream": "^1.0.1",
     "mocha": "^3.2.0"
+  },
+  "dependencies": {}
 }
-  }
