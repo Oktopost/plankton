@@ -7,11 +7,14 @@
     "test": "mocha"
   },
   "keywords": [],
-  "author": {
+  "authors": [{
     "name": "Alexey Puchkov",
     "email": "alexey@oktopost.com",
     "url": "http://www.oktopost.com/"
-  },
+  },{
+    "name": "Daniel Podrabinek",
+    "email": "dpodrabinek@oktopost.com"
+  }],
   "contributors": [],
   "repository": {
     "type": "git",
@@ -30,7 +33,7 @@
     "gulp-string-replace": "^0.3.1",
     "gulp-wrap": "^0.13.0",
     "merge-stream": "^1.0.1",
-    "mocha": "^3.2.0"
-  },
-  "dependencies": {}
+    "mocha": "^3.2.0",
+    "browserify": "^13.3.0"
+  }
 }
