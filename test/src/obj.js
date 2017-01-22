@@ -57,6 +57,28 @@ suite('obj module', function() {
 	});
 	
 	
+	suite('obj.count', () => {
+		test('empty object return 0', () => {
+			assert.equal(0, obj.count({}));
+		});
+		
+		test('object with keys will returns count', () => {
+			assert.equal(2, obj.count({'a': 'b', 2: 3}));
+		});
+		
+		test('prototype keys are not counted', function() {
+			var foo = function() {};
+			foo.prototype.c = 1;
+			
+			var a = new foo;
+			assert.equal(0, obj.count(a));
+			
+			a.b = 2;
+			assert.equal(1, obj.count(a));
+		});
+	});
+	
+	
 	suite('obj.any', () => {
 		suite('obj.any.value', () => {
 			test('empty object return undefined', () => {

@@ -124,4 +124,12 @@ obj.keys = function(subject) {
 };
 
 
+/**
+ * @param {Object} subject
+ * @returns {Array}
+ */
+obj.count = function(subject) {
+	return obj.keys(subject).length;
+};
+
 module.exports = obj;
