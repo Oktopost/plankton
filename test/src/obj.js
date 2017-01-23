@@ -45,6 +45,10 @@ suite('obj module', function() {
 			assert.deepEqual(['a', '2'].sort(), obj.keys({'a': 'b', 2: 3}).sort());
 		});
 		
+		test('key with undefined value', () => {
+			assert.deepEqual(['k'], obj.keys({'k': undefined}));
+		});
+		
 		test('object with prototype values does not return prototype values', function() {
 			var foo = function() {};
 			foo.prototype.c = 1;
@@ -66,6 +70,10 @@ suite('obj module', function() {
 			assert.equal(2, obj.count({'a': 'b', 2: 3}));
 		});
 		
+		test('undefined value counted', () => {
+			assert.deepEqual(1, obj.count({'k': undefined}));
+		});
+		
 		test('prototype keys are not counted', function() {
 			var foo = function() {};
 			foo.prototype.c = 1;
@@ -80,6 +88,11 @@ suite('obj module', function() {
 	
 	
 	suite('obj.any', () => {
+		test('obj.any equals obj.any.value', () => {
+			assert.equal(obj.any, obj.any.value);
+		});
+		
+		
 		suite('obj.any.value', () => {
 			test('empty object return undefined', () => {
 				assert.isUndefined(obj.any.value({}));
@@ -91,6 +104,10 @@ suite('obj module', function() {
 			
 			test('object with keys return a value', () => {
 				assert.include(['a', 2], obj.any.value({'c': 2, 'b': 'a'}));
+			});
+			
+			test('object with undefined value returns undefined', () => {
+				assert.equal(undefined, obj.any.value({'c': undefined}));
 			});
 		});
 		
@@ -106,6 +123,10 @@ suite('obj module', function() {
 			test('object with keys return a key', () => {
 				assert.include(['a', 'b'], obj.any.key({'a': 2, 'b': 'c'}));
 			});
+			
+			test('object with undefined value returns key', () => {
+				assert.equal('c', obj.any.key({'c': undefined}));
+			});
 		});
 		
 		suite('obj.any.item', () => {
@@ -119,6 +140,10 @@ suite('obj module', function() {
 			
 			test('object with number of items', () => {
 				assert.include([{'a': 2}, {'b': 'c'}], obj.any.item({'a': 2, 'b': 'c'}));
+			});
+			
+			test('object with undefined value returns item', () => {
+				assert.deepEqual({'c': undefined}, obj.any.item({'c': undefined}));
 			});
 		});
 	});
@@ -134,6 +159,12 @@ suite('obj module', function() {
 				let result = [];
 				obj.forEach.value({}, (...args) => { result.push(args) });
 				assert.deepEqual([], result);
+			});
+			
+			test('object with undefined value', () => {
+				let result = [];
+				obj.forEach.value({k: undefined}, (...args) => { result.push(args) });
+				assert.deepEqual([[undefined]], result);
 			});
 			
 			test('object with values', () => {
@@ -163,6 +194,12 @@ suite('obj module', function() {
 				let result = [];
 				obj.forEach.key({}, (...args) => { result.push(args) });
 				assert.deepEqual([], result);
+			});
+			
+			test('object with undefined value', () => {
+				let result = [];
+				obj.forEach.key({k: undefined}, (...args) => { result.push(args) });
+				assert.deepEqual([['k']], result);
 			});
 			
 			test('object with key', () => {
@@ -206,6 +243,12 @@ suite('obj module', function() {
 				assert.deepEqual([['a', 'b']], result);
 			});
 			
+			test('object with undefined value', () => {
+				let result = [];
+				obj.forEach.pair({k: undefined}, (...args) => { result.push(args) });
+				assert.deepEqual([['k', undefined]], result);
+			});
+			
 			test('object with inherited', () => {
 				let result = [];
 				let testClass = function() {};
@@ -227,6 +270,12 @@ suite('obj module', function() {
 				let result = [];
 				obj.forEach.item({'a': 'b', 'c': {'a': 12}}, (...args) => { result.push(args) });
 				assert.deepEqual([[{'a': 'b'}], [{'c': {'a': 12}}]], result);
+			});
+			
+			test('object with undefined value', () => {
+				let result = [];
+				obj.forEach.item({k: undefined}, (...args) => { result.push(args) });
+				assert.deepEqual([[{'k': undefined}]], result);
 			});
 			
 			test('break aborts loop', () => {
