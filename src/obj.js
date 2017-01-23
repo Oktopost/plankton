@@ -8,6 +8,18 @@ var obj = {};
 
 
 /**
+ * @param {string|number} key
+ * @param {*} value
+ * @returns {Object}
+ */
+obj.combine = function(key, value) {
+	var res = {};
+	res[key] = value;
+	return res;
+};
+
+
+/**
  * @param subject
  * @returns {*|undefined}
  */
@@ -40,8 +52,7 @@ obj.any.item = function(subject) {
 	var res = undefined;
 	
 	if (is.defined(key)) {
-		res = {};
-		res[key] = subject[key];
+		res = obj.combine(key, subject[key]);
 	}
 	
 	return res;
@@ -96,13 +107,77 @@ obj.forEach.pair = function(subject, callback) {
  */
 obj.forEach.item = function(subject, callback) {
 	obj.forEach.pair(subject, function(key, value) {
-		var res = {};
-		res[key] = value;
-		return callback(res);
+		return callback(obj.combine(key, value));
 	});
 };
 
+
+/**
+ * @param {Object} subject
+ * @param {function(*): bool|null|number} callback
+ * @returns {Object}
+ */
+obj.filter = function(subject, callback) {
+	return obj.filter.pair(subject, function(key, value) {
+		return callback(value);
+	})
+};
+
+/**
+ * @param {Object} subject
+ * @param {function(*): bool|null|number} callback
+ * @returns {Object}
+ */
+obj.filter.value = obj.filter;
+
+/**
+ * @param {Object} subject
+ * @param {function(*): bool|null|number} callback
+ * @returns {Object}
+ */
+obj.filter.key = function(subject, callback) {
+	return obj.filter.pair(subject, function(key) {
+		return callback(key);
+	})
+};
+
+/**
+ * @param {Object} subject
+ * @param {function(*): bool|null|number} callback
+ * @returns {Object}
+ */
+obj.filter.pair = function(subject, callback) {
+	var filtered = {};
 	
+	obj.forEach.pair(subject, function(key, value) {
+		var res = callback(key, value);
+		
+		if (is.null(res)) {
+			return false;
+		} else {
+			filtered[key] = value;
+			
+			if (res === -1) {
+				return false;
+			}
+		}
+	});
+	
+	return filtered;
+};
+
+/**
+ * @param {Object} subject
+ * @param {function(*): bool|null|number} callback
+ * @returns {Object}
+ */
+obj.filter.item = function(subject, callback) {
+	return obj.filter.pair(subject, function(key, value) {
+		return callback(obj.combine(key, value));
+	})
+};
+
+
 /**
  * @param {Object} subject
  * @returns {Array}
@@ -111,10 +186,10 @@ obj.values = function(subject) {
 	return obj.keys(subject).reduce(function (result, key) {
 		result.push(subject[key]);
 		return result;
-	}, [])
+	}, []);
 };
 
-	
+
 /**
  * @param {Object} subject
  * @returns {Array}
