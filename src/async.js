@@ -1,21 +1,15 @@
 'use strict';
 
 
-/**
- * @param {Function} callback
- * @returns {Promise}
- */
-var async =  function(callback) {
-	return Promise.resolve(arguments).then(function(arg) {
-		return callback.apply(null, arg);
-	});
-};
+var func = require('./func');
+
 
 /**
  * @param {Function} callback
  * @returns {Promise}
+ * @function
  */
-async.do = async;
+var async = func.async;
 
 
 module.exports = async;

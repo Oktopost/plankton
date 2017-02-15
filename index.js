@@ -13,5 +13,5 @@ module.exports = {
 	as: as,
 	obj: obj,
 	func: func,
-	array: array,
+	array: array
 };

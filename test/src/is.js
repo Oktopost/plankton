@@ -337,4 +337,15 @@ suite('is module', function() {
 		assert.isTrue(is.jsObject(new Boolean()));
 	});
 	
+	
+	test('is.index', function() {
+		assert.isTrue(is.index('1'));
+		assert.isTrue(is.index(1));
+		
+		assert.isFalse(is.index(-123));
+		assert.isFalse(is.index('01'));
+		assert.isFalse(is.index(''));
+		assert.isFalse(is.index(undefined));
+		assert.isFalse(is.index(true));
+	});
 });
