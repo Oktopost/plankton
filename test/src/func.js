@@ -181,12 +181,10 @@ suite('func module', function() {
 		test('interval', function() {
 			var i = 0;
 			var f = new Promise(function (resolve) {
-					var interval;
-					
-					interval = func.interval(function () {
+					func.interval(function () {
 						i = 1;
 						resolve(i);
-					}, 1);
+					}, 1, 1);
 					
 				});
 
