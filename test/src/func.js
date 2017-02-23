@@ -176,4 +176,23 @@ suite('func module', function() {
 			});
 		});
 	});
+	
+	suite('func.interval', function() {
+		test('interval', function() {
+			var i = 0;
+			var f = new Promise(function (resolve) {
+					var interval;
+					
+					interval = func.interval(function () {
+						i = 1;
+						resolve(i);
+					}, 1);
+					
+				});
+
+			return f.then(function(called){
+				assert.equal(i, 1);
+			});
+		});
+	});
 });
