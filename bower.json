@@ -1,14 +1,14 @@
 {
   "name": "plankton",
   "description": "A set of helpfull functions",
-  "main": "bin/plankton.js",
+  "main": "plankton.js",
   "license": "MIT",
   "moduleType": "globals",
   "homepage": "https://github.com/Oktopost/plankton",
   "ignore": [
     "*",
-    "!plankton.js",
-    "!plankton-min.js"
+    "!plankton-min.js",
+    "!plankton.js"
   ],
   "authors": [
     "Alexey Puchkov <alexey@oktopost.com>",
