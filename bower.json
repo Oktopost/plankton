@@ -8,7 +8,7 @@
   "ignore": [
     "*",
     "!plankton.js",
-    "!plankton.min.js"
+    "!plankton-min.js"
   ],
   "authors": [
     "Alexey Puchkov <alexey@oktopost.com>",
