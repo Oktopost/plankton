@@ -1,0 +1,21 @@
+{
+  "name": "plankton",
+  "description": "A set of helpfull functions",
+  "main": "bin/plankton.js",
+  "license": "MIT",
+  "moduleType": "globals",
+  "homepage": "https://github.com/Oktopost/plankton",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "gulp",
+    "src",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "authors": [
+    "Alexey Puchkov <alexey@oktopost.com>",
+    "Daniel Podrabinek <dpodrabinek@oktopost.com>"
+  ]
+}
