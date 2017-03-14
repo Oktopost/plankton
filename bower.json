@@ -6,13 +6,9 @@
   "moduleType": "globals",
   "homepage": "https://github.com/Oktopost/plankton",
   "ignore": [
-    "**/.*",
-    "node_modules",
-    "gulp",
-    "src",
-    "bower_components",
-    "test",
-    "tests"
+    "*",
+    "!plankton.js",
+    "!plankton.min.js"
   ],
   "authors": [
     "Alexey Puchkov <alexey@oktopost.com>",

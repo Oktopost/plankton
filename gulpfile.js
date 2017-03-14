@@ -57,7 +57,7 @@ gulp.task('build-web', ['clean-web', 'prepare-web'], () => {
 			'./bin/tmp/as.js'
 		])
 		.pipe(concat('plankton.js'))
-		.pipe(gulp.dest('./bin'))
+		.pipe(gulp.dest('./'))
 		.pipe(minify())
-		.pipe(gulp.dest('./bin'));
+		.pipe(gulp.dest('./'));
 });
