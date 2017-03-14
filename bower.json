@@ -7,8 +7,8 @@
   "homepage": "https://github.com/Oktopost/plankton",
   "ignore": [
     "*",
-    "!plankton-min.js",
-    "!plankton.js"
+    "!plankton.js",
+    "!plankton-min.js"
   ],
   "authors": [
     "Alexey Puchkov <alexey@oktopost.com>",
