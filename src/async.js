@@ -12,4 +12,13 @@ var func = require('./func');
 var async = func.async;
 
 
+/**
+ * @param {Function} callback
+ * @return {Promise}
+ */
+async.do = function(callback) {
+	return (async(callback))();
+};
+
+
 module.exports = async;
