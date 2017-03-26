@@ -3,12 +3,10 @@
 
 const gulp = require('gulp');
 const clean = require('gulp-clean');
-const deleteLines = require('gulp-delete-lines');
 const minify = require('gulp-minify');
 const concat = require('gulp-concat');
 const wrap = require("gulp-wrap");
 const replace = require('gulp-string-replace');
-const merge = require('merge-stream');
 
 
 gulp.task('test', () => {
