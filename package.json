@@ -1,39 +1,36 @@
 {
   "name": "oktopost-plankton",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "A set of helpfull functions",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
   },
   "keywords": [],
-  "authors": [{
-    "name": "Alexey Puchkov",
-    "email": "alexey@oktopost.com",
-    "url": "http://www.oktopost.com/"
-  },{
-    "name": "Daniel Podrabinek",
-    "email": "dpodrabinek@oktopost.com"
-  }],
+  "authors": [
+    {
+      "name": "Alexey Puchkov",
+      "email": "alexey@oktopost.com",
+      "url": "http://www.oktopost.com/"
+    },
+    {
+      "name": "Daniel Podrabinek",
+      "email": "dpodrabinek@oktopost.com"
+    }
+  ],
   "contributors": [],
   "repository": {
     "type": "git",
     "url": "https://github.com/Oktopost/plankton.git"
   },
   "license": "MIT",
-  "devDependencies": {
-    "chai": "^3.5.0",
-    "del": "^2.2.2",
-    "gulp": "^3.9.1",
-    "gulp-add-src": "^0.2.0",
-    "gulp-clean": "^0.3.2",
-    "gulp-concat": "^2.6.1",
-    "gulp-delete-lines": "0.0.7",
-    "gulp-minify": "0.0.14",
-    "gulp-string-replace": "^0.3.1",
-    "gulp-wrap": "^0.13.0",
-    "merge-stream": "^1.0.1",
-    "mocha": "^3.2.0",
-    "browserify": "^13.3.0"
+  "dependencies": {
+    "oktopost-namespace": "https://github.com/Oktopost/namespace.git#32d6f41",
+    "oktopost-plankton-is": "https://github.com/Oktopost/plankton-is.git#f45ca73",
+    "oktopost-plankton-obj": "https://github.com/Oktopost/plankton-obj.git#f8dc626",
+    "oktopost-plankton-array": "https://github.com/Oktopost/plankton-array.git#42db650",
+    "oktopost-plankton-as": "https://github.com/Oktopost/plankton-as.git#d3ce25c",
+    "oktopost-plankton-foreach": "https://github.com/Oktopost/plankton-foreach.git#eee361e",
+    "oktopost-plankton-func": "https://github.com/Oktopost/plankton-func.git#cd8483f"
   }
 }
