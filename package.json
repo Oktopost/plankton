@@ -1,6 +1,6 @@
 {
   "name": "oktopost-plankton",
-  "version": "0.1.11",
+  "version": "1.1.0",
   "description": "A set of helpfull functions",
   "main": "index.js",
   "scripts": {
@@ -25,12 +25,12 @@
   },
   "license": "MIT",
   "dependencies": {
-    "oktopost-namespace": "https://github.com/Oktopost/namespace.git#32d6f41",
-    "oktopost-plankton-is": "https://github.com/Oktopost/plankton-is.git#f45ca73",
-    "oktopost-plankton-obj": "https://github.com/Oktopost/plankton-obj.git#f8dc626",
-    "oktopost-plankton-array": "https://github.com/Oktopost/plankton-array.git#42db650",
-    "oktopost-plankton-as": "https://github.com/Oktopost/plankton-as.git#d3ce25c",
-    "oktopost-plankton-foreach": "https://github.com/Oktopost/plankton-foreach.git#eee361e",
-    "oktopost-plankton-func": "https://github.com/Oktopost/plankton-func.git#cd8483f"
+    "oktopost-namespace": "^2.0.0",
+    "oktopost-plankton-is": "^1.1.0",
+    "oktopost-plankton-obj": "^1.1.0",
+    "oktopost-plankton-array": "^1.1.0",
+    "oktopost-plankton-as": "^1.1.0",
+    "oktopost-plankton-foreach": "^1.1.0",
+    "oktopost-plankton-func": "^1.1.0"
   }
 }
