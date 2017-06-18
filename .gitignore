@@ -13,3 +13,4 @@
 # Local files
 npm-debug.log
 /.namespace.json
+/test.js
