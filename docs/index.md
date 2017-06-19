@@ -103,3 +103,5 @@ foreach.pair(['a', 'b'], function (key, value)
 # Extra Libraries
 
 ## [oktopost-plankton-url](./plankton/url.md)
+
+> Library [`oktopost-plankton-url`](https://github.com/Oktopost/plankton-url)

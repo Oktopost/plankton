@@ -1,50 +1,61 @@
 # is Object
 
-> Library `oktopost-plankton-is` 
+[![NPM Version](https://img.shields.io/npm/v/oktopost-plankton-is.svg)](https://www.npmjs.com/package/oktopost-plankton-is)
+[![Build Status](https://travis-ci.org/Oktopost/plankton-is.svg?branch=master)](https://travis-ci.org/Oktopost/plankton-is)
+[![Coverage Status](https://coveralls.io/repos/github/Oktopost/plankton-is/badge.svg?branch=master&2)](https://coveralls.io/github/Oktopost/plankton-is?branch=master&2)
 
-> npm: `npm install oktopost-plankton --save`
+> Library **[`oktopost-plankton-is`](https://github.com/Oktopost/plankton-is)** 
 
 [Full Plankton Documentation](../index.md) 
 
 ## Table Of Contents
 
-  * [is(subject)](#is-subject)
-  * [is.true(subject)](#istrue-subject)
-  * [is.false(subject)](#isfalse-subject)
-  * [is.defined(subject)](#isdefined-subject)
-  * [is.undefined(subject)](#isundefined-subject)
-  * [is.null(subject)](#isnull-subject)
-  * [is.bool(subject)](#isbool-subject)
-  * [is.function(subject)](#isfunction-subject)
-  * [is.string(subject)](#isstring-subject)
-  * [is.string.empty(subject)](#isstringempty-subject)
-  * [is.string.notEmpty(subject)](#isstringnotempty-subject)
-  * [is.number(subject)](#isnumber-subject)
-  * [is.numeric(subject)](#isnumeric-subject)
-  * [is.numeric.int(subject)](#isnumericint-subject)
-  * [is.numeric.float(subject)](#isnumericfloat-subject)
-  * [is.numeric.odd(subject)](#isnumericodd-subject)
-  * [is.numeric.even(subject)](#isnumericeven-subject)
-  * [is.NaN(subject)](#isnan-subject)
-  * [is.infinite(subject)](#isinfinite-subject)
-  * [is.array(subject)](#isarray-subject)
-  * [is.array.empty(subject)](#isarrayempty-subject)
-  * [is.array.notEmpty(subject)](#isarraynotEmpty-subject)
-  * [is.object(subject)](#isobject-subject)
-  * [is.object.empty(subject)](#isobjectempty-subject)
-  * [is.object.notEmpty(subject)](#isobjectnotempty-subject)
-  * [is.objectLiteral(subject)](#isobjectliteral-subject)
-  * [is.jsObject(subject)](#isjsobject-subject)
-  * [is.jsPrimitive(subject)](#isjsprimitive-subject)
-  * [is.collection(subject)](#iscollection-subject)
-  * [is.collection.empty(subject)](#iscollectionempty-subject)
-  * [is.collection.notEmpty(subject)](#iscollectionnotempty-subject)
-  * [is.empty(subject)](#isempty-subject)
-  * [is.json(subject)](#isjson-subject)
-  * [is.index(subject)](#isindex-subject)
+  * [Installation](#installation)
+  * [Functions](#functions)
+    * [is(subject)](#is-subject)
+    * [is.true(subject)](#istrue-subject)
+    * [is.false(subject)](#isfalse-subject)
+    * [is.defined(subject)](#isdefined-subject)
+    * [is.undefined(subject)](#isundefined-subject)
+    * [is.null(subject)](#isnull-subject)
+    * [is.bool(subject)](#isbool-subject)
+    * [is.function(subject)](#isfunction-subject)
+    * [is.string(subject)](#isstring-subject)
+    * [is.string.empty(subject)](#isstringempty-subject)
+    * [is.string.notEmpty(subject)](#isstringnotempty-subject)
+    * [is.number(subject)](#isnumber-subject)
+    * [is.numeric(subject)](#isnumeric-subject)
+    * [is.numeric.int(subject)](#isnumericint-subject)
+    * [is.numeric.float(subject)](#isnumericfloat-subject)
+    * [is.numeric.odd(subject)](#isnumericodd-subject)
+    * [is.numeric.even(subject)](#isnumericeven-subject)
+    * [is.NaN(subject)](#isnan-subject)
+    * [is.infinite(subject)](#isinfinite-subject)
+    * [is.array(subject)](#isarray-subject)
+    * [is.array.empty(subject)](#isarrayempty-subject)
+    * [is.array.notEmpty(subject)](#isarraynotEmpty-subject)
+    * [is.object(subject)](#isobject-subject)
+    * [is.object.empty(subject)](#isobjectempty-subject)
+    * [is.object.notEmpty(subject)](#isobjectnotempty-subject)
+    * [is.objectLiteral(subject)](#isobjectliteral-subject)
+    * [is.jsObject(subject)](#isjsobject-subject)
+    * [is.jsPrimitive(subject)](#isjsprimitive-subject)
+    * [is.collection(subject)](#iscollection-subject)
+    * [is.collection.empty(subject)](#iscollectionempty-subject)
+    * [is.collection.notEmpty(subject)](#iscollectionnotempty-subject)
+    * [is.empty(subject)](#isempty-subject)
+    * [is.json(subject)](#isjson-subject)
+    * [is.index(subject)](#isindex-subject)
 
+## Installation
 
-## is (subject)
+```bash
+npm install oktopost-plankton --save
+```
+
+## Functions
+
+### is (subject)
 
 Alias to the [`is.true(subject)`](istrue-subject) function.
 
@@ -54,7 +65,7 @@ is([]);			// false
 is({a: 1});		// true
 ```
 
-## is.true (subject)
+### is.true (subject)
 
 Check if the value of **subject** denotes to a true like value.
 
@@ -69,11 +80,11 @@ is.true([1, 2]);	// true
 is.true(true);		// true
 ```
 
-## is.false (subject)
+### is.false (subject)
 
 Opposite of the [`is.true(subject)`](istrue-subject) function.
 
-## is.defined (subject)
+### is.defined (subject)
 
 Check if **subject** is defined.
 
@@ -83,7 +94,7 @@ is.defined(1);			// true
 is.defined(undefined);	// false
 ```
 
-## is.undefined (subject)
+### is.undefined (subject)
 
 Opposite of the [`is.defined(subject)`](isdefined-subject) function.
 
@@ -93,7 +104,7 @@ is.undefined(1);			// false
 is.undefined(undefined);	// true
 ```
 
-## is.null (subject)
+### is.null (subject)
 
 Return true only if **subject** is **null**
 
@@ -104,7 +115,7 @@ is.null(undefined);	// false
 is.null(null);		// true
 ```
 
-## is.bool (subject)
+### is.bool (subject)
 
 Return true if **subject** is of boolean type.
 
@@ -117,7 +128,7 @@ is.bool(false);			// true
 is.bool(new Boolean());	// true
 ```
 
-## is.function (subject)
+### is.function (subject)
 
 Return true if **subject** is a function.
 
@@ -126,7 +137,7 @@ is.function(function () {});	// true
 is.function(undefined);			// false
 ```
 
-## is.string (subject)
+### is.string (subject)
 
 Return true if **subject** is a string.
 
@@ -138,7 +149,7 @@ is.string('');				// true
 is.string(123);				// false
 ```
 
-## is.string.empty (subject)
+### is.string.empty (subject)
 
 Return true if **subject** is a string and is empty.
 
@@ -150,7 +161,7 @@ is.string.empty('abc');			// false
 is.string.empty(123);				// false
 ```
 
-## is.string.notEmpty (subject)
+### is.string.notEmpty (subject)
 
 Return true if **subject** is a string and not empty.
 
@@ -162,7 +173,7 @@ is.string.notEmpty('');					// false
 is.string.notEmpty(123);				// false
 ```
 
-## is.number (subject)
+### is.number (subject)
 
 Return true if **subject** is of number type
 
@@ -176,7 +187,7 @@ is.number('asd');		// false
 is.number(null);		// false
 ```
 
-## is.numeric (subject)
+### is.numeric (subject)
 
 Return true if **subject** is of number type and can be represented as a numeric value. 
 
@@ -190,7 +201,7 @@ is.number('asd');		// false
 is.number(null);		// false
 ```
 
-## is.numeric.int (subject)
+### is.numeric.int (subject)
 
 Return true if **subject** is of number type, can be represented as a numeric value and 
 have no fractional component.
@@ -203,7 +214,7 @@ is.number.int(-932.23);		// false
 is.number.int('asd');		// false
 ```
 
-## is.numeric.float (subject)
+### is.numeric.float (subject)
 
 Return true if **subject** is of number type, can be represented as a numeric value and 
 have a fractional component.
@@ -215,7 +226,7 @@ is.number.int(123);			// false
 is.number.int('asd');		// false
 ```
 
-## is.numeric.odd (subject)
+### is.numeric.odd (subject)
 
 Return true if **subject** is an odd number.
 
@@ -228,7 +239,7 @@ is.number.odd(0);		// false
 is.number.odd('asd');	// false
 ```
 
-## is.numeric.even (subject)
+### is.numeric.even (subject)
 
 Return true if **subject** is an even number.
 
@@ -241,7 +252,7 @@ is.number.even(123);	// false
 is.number.even('asd');	// false
 ```
 
-## is.NaN (subject)
+### is.NaN (subject)
 
 Return true if **subject** is **NaN**.
 
@@ -251,7 +262,7 @@ is.NaN(NaN);	// true
 is.NaN(/* anything else */);	// false
 ```
 
-## is.infinite (subject)
+### is.infinite (subject)
 
 Return true if **subject** is **Infinity** or **-Infinity**.
 
@@ -262,7 +273,7 @@ is.infinite(-Infinity);	// true
 is.infinite(/* anything else */);	// false
 ```
 
-## is.array (subject)
+### is.array (subject)
 
 Return true if **subject** is an array.
 
@@ -275,7 +286,7 @@ is.array(null);			// false
 is.array("123");		// false
 ```
 
-## is.array.empty (subject)
+### is.array.empty (subject)
 
 Return true if **subject** is an array and empty.
 
@@ -288,7 +299,7 @@ is.array.empty("123");		// false
 ```
 
 
-## is.array.notEmpty (subject)
+### is.array.notEmpty (subject)
 
 Return true if **subject** is an array and not empty.
 
@@ -300,7 +311,7 @@ is.array.empty({a: 1});		// false
 is.array.empty("123");		// false
 ```
 
-## is.object (subject)
+### is.object (subject)
 
 Return true if **subject** is an object literal, or an instance created using a constructor function.
 
@@ -317,7 +328,7 @@ is.object(new String());		// false
 is.object(function() {});		// false
 ```
 
-## is.object.empty (subject)
+### is.object.empty (subject)
 
 Return true if **subject** is an object literal or an instance created using a constructor function, and 
 have at least one owned property.
@@ -336,7 +347,7 @@ is.object.empty(new String());			// false
 is.object.empty({ a: 1 });				// false
 ```
 
-## is.object.notEmpty (subject)
+### is.object.notEmpty (subject)
 
 Return true if **subject** is an object literal or an instance created using a constructor function, and 
 have no owned properties.
@@ -359,7 +370,7 @@ is.object.notEmpty(Object.create(null));	// false
 is.object.notEmpty(new String());			// false
 is.object.notEmpty([1, 2, 3]);				// false
 ```
-## is.objectLiteral (subject)
+### is.objectLiteral (subject)
 
 Return true if **subject** is an object literal
 
@@ -377,7 +388,7 @@ is.object.notEmpty(new String());			// false
 is.object.notEmpty([1, 2, 3]);				// false
 ```
 
-## is.jsObject (subject)
+### is.jsObject (subject)
 
 Return true if **subject** is any non primitive value excluding null.
 
@@ -392,7 +403,7 @@ is.jsObject("1");	// false
 is.jsObject(false);	// false
 ```
 
-## is.jsPrimitive (subject)
+### is.jsPrimitive (subject)
 
 Return true if **subject** is a primitive value.
 
@@ -408,7 +419,7 @@ is.jsObject(new MyClass());	// false
 is.jsObject(null);	// false
 ```
 
-## is.collection (subject)
+### is.collection (subject)
 
 Return true if **subject** is either string, array or an object literal.
 
@@ -422,7 +433,7 @@ is.collection(new String());	// false
 is.collection(null);			// false
 ```
 
-## is.collection.empty (subject)
+### is.collection.empty (subject)
 
 Return true if **subject** is either string, array or an object literal and empty.
 
@@ -435,7 +446,7 @@ is.collection.empty([]);			// true
 is.collection.empty(/* any other value */); // false
 ```
 
-## is.collection.notEmpty (subject)
+### is.collection.notEmpty (subject)
 
 Return true if **subject** is either string, array or an object literal and not empty.
 
@@ -452,7 +463,7 @@ is.collection.notEmpty(123);			// false
 is.collection.notEmpty(null);			// false
 ```
 
-## is.empty (subject)
+### is.empty (subject)
 
 Return true if **subject** is either string, array or an object literal and not empty.
 
@@ -474,7 +485,7 @@ is.empty(NaN);		// throws exception
 ```
 
 
-## is.json (subject)
+### is.json (subject)
 
 Return true if **subject** is a valid json string.
 
@@ -488,7 +499,7 @@ is.json(123);		// false
 is.json('{a:');		// false
 ```
 
-## is.index (subject)
+### is.index (subject)
 
 Return true if **subject** is a numeric value that can be used as an index of an array.
 
