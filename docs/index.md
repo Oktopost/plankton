@@ -3,7 +3,7 @@
 
 ## [is](./plankton/is.md)
 
-> Library `oktopost-plankton-is`
+> Library [`oktopost-plankton-is`](https://github.com/Oktopost/plankton-is)
 
 A collection of functions to determine the type or state of a variable
 
@@ -18,7 +18,7 @@ is.array.empty([1, 2, 3]);	// false
 
 ## [as](./plankton/as.md)
 
-> Library `oktopost-plankton-as`
+> Library [`oktopost-plankton-as`](https://coveralls.io/github/Oktopost/plankton-as)
 
 A collection of functions for converting a variable into a specific type. 
 
@@ -31,7 +31,7 @@ as.array([1]);			// [1]
 
 ## [array](./plankton/array.md)
 
-> Library `oktopost-plankton-array`
+> Library [`oktopost-plankton-array`](https://github.com/Oktopost/plankton-array)
 
 A collection of functions for working with arrays.
 
@@ -48,7 +48,7 @@ array.normalize(a);					// [0: 2, 1: 3]
 
 ## [obj](./plankton/obj.md)
 
-> Library `oktopost-plankton-obj`
+> Library [`oktopost-plankton-obj`](https://github.com/Oktopost/plankton-obj)
 
 A collection of functions for working with objects.
 
@@ -61,7 +61,7 @@ obj.count({a: 1, b: 2});			// 2
 
 ## [func](./plankton/func.md)
 
-> Library `oktopost-plankton-func`
+> Library [`oktopost-plankton-func`](https://github.com/Oktopost/plankton-func)
 
 A collection of decorators for JavaScript functions.
 
@@ -78,7 +78,7 @@ var postponedFunc = func.postponed(function () { console.log(); }, 1000);
 
 ## [foreach](./plankton/foreach.md)
 
-> Library `oktopost-plankton-foreach`
+> Library [`oktopost-plankton-foreach`](https://github.com/Oktopost/plankton-foreach)
 
 An implementation of the foreach loop.
 

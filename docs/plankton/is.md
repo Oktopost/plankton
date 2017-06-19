@@ -1,5 +1,9 @@
 # is Object
 
+> Library `oktopost-plankton-is` 
+
+> npm: `npm install oktopost-plankton --save`
+
 [Full Plankton Documentation](../index.md) 
 
 ## Table Of Contents
@@ -406,25 +410,93 @@ is.jsObject(null);	// false
 
 ## is.collection (subject)
 
-Return true if **subject** is either string, array or object literal.
+Return true if **subject** is either string, array or an object literal.
+
+```js
+is.collection({});			// true
+is.collection("1");			// true
+is.collection([1, 2, 3]);	// true
+
+is.collection(1);				// false
+is.collection(new String());	// false
+is.collection(null);			// false
+```
 
 ## is.collection.empty (subject)
 
-Return true if **subject** is either string, array or object literal and empty.
+Return true if **subject** is either string, array or an object literal and empty.
+
+```js
+is.collection.empty({});			// true
+is.collection.empty('');			// true
+is.collection.empty(new Stirng());	// true
+is.collection.empty([]);			// true
+
+is.collection.empty(/* any other value */); // false
+```
 
 ## is.collection.notEmpty (subject)
 
-Return true if **subject** is either string, array or object literal and not empty.
+Return true if **subject** is either string, array or an object literal and not empty.
+
+```js
+is.collection.notEmpty({a: 1});		// true
+is.collection.notEmpty('hello');	// true
+is.collection.notEmpty(['a']);		// true
+
+is.collection.notEmpty({});				// false
+is.collection.notEmpty('');				// false
+is.collection.notEmpty(new Stirng());	// false
+is.collection.notEmpty([]);				// false
+is.collection.notEmpty(123);			// false
+is.collection.notEmpty(null);			// false
+```
 
 ## is.empty (subject)
 
-Return true if **subject** is either string, array or object literal and not empty.
+Return true if **subject** is either string, array or an object literal and not empty.
+
+```js
+is.empty({});			// true
+is.empty('');			// true
+is.empty(new Stirng());	// true
+is.empty([]);			// true
+
+is.empty({a: 1});				// false
+is.empty('123');				// false
+is.empty(new Stirng('abc'));	// false
+is.empty([1, 's']);				// false
+
+
+is.empty(1);		// thorws exception
+is.empty(null);		// thorws exception
+is.empty(NaN);		// throws exception
+```
+
 
 ## is.json (subject)
 
-Return true if **subject** is an empty collection. Note that if subject is not 
-a collection, an error is thrown.
+Return true if **subject** is a valid json string.
+
+```js
+is.json('[1,2]');	// true
+is.json('null');	// true
+is.json('""');		// true
+
+is.json('');		// false
+is.json(123);		// false
+is.json('{a:');		// false
+```
 
 ## is.index (subject)
 
 Return true if **subject** is a numeric value that can be used as an index of an array.
+
+```js
+is.index(0);	// true
+is.index(7812);	// true
+
+is.index(-123);	// false
+is.index(null);	// false
+is.index('');	// false
+```
