@@ -1,6 +1,6 @@
 # Plankton
 
-Plankton is a collection of utility libraries build for JavaScript. The default libraries of 
+Plankton is a collection of utility libraries built for JavaScript. The default libraries of 
 this project are included inside the `oktopost-plankton` *NPM* package. 
 
 Full documentation is available **[here](./docs/index.md)**. 
