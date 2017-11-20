@@ -1,20 +1,8 @@
 # Plankton
 
-Plankton is a collection of utility libraries built for JavaScript. The default libraries of 
-this project are included inside the `oktopost-plankton` *NPM* package. 
-
-Full documentation is available **[here](./docs/index.md)**. 
-
-## Libraries
-
-List of default libraries included in the `oktopost-plankton` package.
-
-* [`oktopost-plankton-is`](./docs/plankton/is.md)
-* [`oktopost-plankton-as`](./docs/plankton/as.md)
-* [`oktopost-plankton-func`](./docs/plankton/func.md)
-* [`oktopost-plankton-obj`](./docs/plankton/obj.md)
-* [`oktopost-plankton-array`](./docs/plankton/array.md)
-* [`oktopost-plankton-foreach`](./docs/plankton/foreach.md)
+[![NPM Version](https://img.shields.io/npm/v/oktopost-plankton.svg)](https://www.npmjs.com/package/oktopost-plankton)
+[![Build Status](https://travis-ci.org/Oktopost/plankton.svg?branch=master)](https://travis-ci.org/Oktopost/plankton)
+[![Coverage Status](https://coveralls.io/repos/github/Oktopost/plankton/badge.svg?branch=master)](https://coveralls.io/github/Oktopost/plankton?branch=master)
 
 Additional standalone libraries
  
