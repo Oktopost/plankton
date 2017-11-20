@@ -1,0 +1,9 @@
+{
+	"map":
+	{
+		"partial":
+		{
+			"Plankton": "./src/Plankton"
+		}
+	}
+}
