@@ -6,6 +6,11 @@ suite('url module', () =>
 {
 	suite('encode', () =>
 	{
+		test('params not passed, params treated as empty set', () =>
+		{
+			assert.equal('/a/b', url.encode('/a/b'));
+		});
+		
 		test('empty data, empty string returned', () =>
 		{
 			assert.equal('', url.encode('', {}));

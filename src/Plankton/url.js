@@ -24,6 +24,8 @@ namespace('Plankton', function(root)
 		var addSlash	= false;
 		var queryParts	= [];
 		
+		params = params || {};
+		
 		foreach.pair(params, function (key, value)
 		{
 			if (is.bool(value))
