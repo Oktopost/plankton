@@ -106,6 +106,16 @@ suite('url module', () =>
 			assert.deepEqual({ uri: 'abc/', path: ['abc'], params: {}}, url.decode('abc/'));
 		});
 		
+		test('path end with #', () =>
+		{
+			assert.deepEqual({ uri: 'abc', path: ['abc'], params: {}}, url.decode('abc#abc'));
+		});
+		
+		test('path has # in it', () =>
+		{
+			assert.deepEqual({ uri: 'abc', path: ['abc'], params: {}}, url.decode('abc#abc/def'));
+		});
+		
 		test('long path', () =>
 		{
 			assert.deepEqual({ uri: '/abc/def', path: [ 'abc', 'def' ], params: {}}, url.decode('/abc/def'));
@@ -160,6 +170,16 @@ suite('url module', () =>
 		test('query params have the = sign not attached to any key', () =>
 		{
 			assert.deepEqual({ uri: '', path: [], params: { 'c': 'd' }}, url.decode('?=&c=d'));
+		});
+		
+		test('query params ends with #', () =>
+		{
+			assert.deepEqual({ uri: '', path: [], params: { 'c': 'd' }}, url.decode('?c=d#a'));
+		});
+		
+		test('query params has number of #', () =>
+		{
+			assert.deepEqual({ uri: '', path: [], params: { 'c': 'd' }}, url.decode('?c=d#a&a=4#'));
 		});
 	});
 });

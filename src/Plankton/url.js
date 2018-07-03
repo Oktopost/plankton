@@ -78,7 +78,7 @@ namespace('Plankton', function(root)
 	 */
 	url.decode = function (url)
 	{
-		var data	= url.split('?');
+		var data	= url.split('#', 1)[0].split('?');
 		var path	= [];
 		var params	= {};
 		var uri		= data[0];
