@@ -15,6 +15,10 @@ namespace('Plankton', function (root)
 		{
 			return obj.foreach;
 		}
+		else if (is.undefined(subject))
+		{
+			return array.foreach;
+		}
 		else
 		{
 			throw Error('Subject must be Array or Object');

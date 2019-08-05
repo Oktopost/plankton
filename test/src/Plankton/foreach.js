@@ -10,6 +10,23 @@ suite('foreach module', () =>
 	});
 	
 	
+	suite('foreach', () =>
+	{
+		test('pass undefined', () => 
+		{
+			var isCalled = [];
+			
+			
+			(function(a)
+			{
+				foreach.value(a, () => { isCalled = true; });
+			})();
+			
+			assert.equal(isCalled, false);
+		});
+	});
+	
+	
 	suite('foreach.value', () => 
 	{
 		test('array subject', () =>
