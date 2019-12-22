@@ -621,4 +621,44 @@ suite('obj module', function() {
 			});
 		});
 	});
+
+	suite('obj.path', function()
+	{
+		test('no data passed', () =>
+		{
+			assert.equal(undefined, obj.path());
+		});
+
+		test('empty object', () =>
+		{
+			assert.equal(undefined, obj.path({}));
+		});
+
+		test('empty path', () =>
+		{
+			assert.equal(undefined, obj.path({a: 1}, []));
+			assert.equal(undefined, obj.path({a: 1}, ''));
+		});
+
+		test('path defined', () =>
+		{
+			assert.deepEqual([1], obj.path({ a: { b: [1] } }, ['a', 'b']));
+			assert.deepEqual({ c: 1 }, obj.path({ a: { b: { c: 1 } } }, 'a.b'));
+			assert.equal(1, obj.path({ a: { b: 1 } }, ['a', 'b']));
+			assert.equal(null, obj.path({ a: { b: null } }, 'a.b'));
+			assert.equal('', obj.path({ a: { b: '' } }, ['a', 'b']));
+			assert.equal(false, obj.path({ a: { b: false } }, 'a.b'));
+		});
+
+		test('path not defined', () =>
+		{
+			assert.deepEqual([1], obj.path({ a: { c: 1 } }, ['a', 'b'], [1]));
+			assert.deepEqual({ c: 1 }, obj.path({ a: { c: 1 } }, 'a.b', { c: 1 }));
+			assert.equal(1, obj.path({ a: { c: 1 } }, ['a', 'b'], 1));
+			assert.equal(null, obj.path({ a: { c: 1 } }, 'a.b'), null);
+			assert.equal('', obj.path({ a: { c: 1 } }, ['a', 'b'], ''));
+			assert.equal(false, obj.path({ a: { c: 1 } }, 'a.b', false));
+			assert.equal(undefined, obj.path({ a: { c: 1 } }, 'a.b'));
+		});
+	});
 });

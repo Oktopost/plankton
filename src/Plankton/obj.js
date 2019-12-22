@@ -317,6 +317,36 @@ namespace('Plankton', function (root)
 	{
 		return obj.keys(subject).length;
 	};
+
+	/**
+	 * @param {Object} subject
+	 * @param {Array|String} path
+	 * @param {*} def
+	 * @returns {*}
+	 */
+	obj.path = function (subject, path, def)
+	{
+		if (is.false(subject))
+			return def;
+
+		if (is.false(path))
+			return def;
+
+		if (is.string(path))
+		{
+			path = path.split('.');
+		}
+
+		var cursor = subject;
+
+		obj.foreach(path, function (p)
+		{
+			cursor = cursor[p];
+			return is.defined(cursor);
+		});
+
+		return is.undefined(cursor) ? def : cursor;
+	};
 	
 	
 	this.obj = obj;
