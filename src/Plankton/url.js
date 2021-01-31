@@ -131,7 +131,7 @@ namespace('Plankton', function(root)
 			
 			if (params[key])
 			{
-				let values = array(params[key]);
+				var values = array(params[key]);
 				values.push(value);
 				params[key] = values;
 			}
