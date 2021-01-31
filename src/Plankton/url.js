@@ -66,7 +66,12 @@ namespace('Plankton', function(root)
 		
 		foreach.pair(queryParams, function (key, value)
 		{
-			queryParts.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+			value = array(value);
+
+			foreach(value, function (item)
+			{
+				queryParts.push(encodeURIComponent(key) + '=' + encodeURIComponent(item));
+			});
 		});
 		
 		return encodedLink + '?' + queryParts.join('&');
@@ -124,7 +129,16 @@ namespace('Plankton', function(root)
 				value = decodeURIComponent(query[1]);
 			}
 			
-			params[key] = value;
+			if (params[key])
+			{
+				let values = array(params[key]);
+				values.push(value);
+				params[key] = values;
+			}
+			else
+			{
+				params[key] = value;
+			}
 		});
 		
 		return {
