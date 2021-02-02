@@ -66,12 +66,24 @@ namespace('Plankton', function(root)
 		
 		foreach.pair(queryParams, function (key, value)
 		{
-			value = array(value);
-
-			foreach(value, function (item)
+			if (is.array(value))
 			{
-				queryParts.push(encodeURIComponent(key) + '=' + encodeURIComponent(item));
-			});
+				let res = '';
+				
+				foreach(value, function (item)
+				{
+					res += encodeURIComponent(item);
+					res += ',';
+				});
+				
+				value = res.substring(0, res.length - 1);
+			}
+			else
+			{
+				value = encodeURIComponent(value);
+			}
+			
+			queryParts.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
 		});
 		
 		return encodedLink + '?' + queryParts.join('&');
@@ -129,16 +141,24 @@ namespace('Plankton', function(root)
 				value = decodeURIComponent(query[1]);
 			}
 			
-			if (params[key])
+			if (value.indexOf(',') > -1)
 			{
-				var values = array(params[key]);
-				values.push(value);
-				params[key] = values;
+				let res = [];
+				value = value.split(',');
+				
+				foreach(value, function (item)
+				{
+					res.push(decodeURIComponent(item));
+				});
+				
+				value = res;
 			}
 			else
 			{
-				params[key] = value;
+				value = decodeURIComponent(value);
 			}
+			
+			params[key] = value;
 		});
 		
 		return {
