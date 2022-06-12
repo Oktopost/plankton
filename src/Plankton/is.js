@@ -396,6 +396,15 @@ namespace('Plankton', function()
 		return ARRAY_INDEX_REGEX.test(subject) && subject <= ARRAY_INDEX_MAX_VALUE;
 	};
 	
+	/**
+	 * @param {*} subject
+	 * @returns {boolean}
+	 */
+	is.value = function (subject)
+	{
+		return is.defined(subject) && !is.null(subject);
+	}
+	
 	
 	this.is = is;
 });
