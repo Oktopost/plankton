@@ -143,19 +143,31 @@ namespace('Plankton', function(root)
 			
 			if (value.indexOf(',') > -1)
 			{
-				let res = [];
-				value = value.split(',');
-				
-				foreach(value, function (item)
+				try
 				{
-					res.push(decodeURIComponent(item));
-				});
-				
-				value = res;
+					let res = [];
+					let tmpValue = value.split(',');
+					
+					foreach(tmpValue, function (item)
+					{
+						res.push(decodeURIComponent(item));
+					});
+					
+					value = res;
+				}
+				catch (e)
+				{
+				}
 			}
 			else
 			{
-				value = decodeURIComponent(value);
+				try
+				{
+					value = decodeURIComponent(value);
+				}
+				catch (e)
+				{
+				}
 			}
 			
 			params[key] = value;
